@@ -58,19 +58,3 @@ char	*get_next_line(int fd)
 		return (NULL);
 	return (ft_strdup(line));
 }
-
-#include <stdio.h>
-
-int main()
-{
-    char	*line;
-	int		fd;
-
-	fd = open("file.txt", O_RDONLY);
-	line = get_next_line(fd);
-    printf("%s", line);
-	free(line);
-	close(fd);
-
-    return (0);
-}
