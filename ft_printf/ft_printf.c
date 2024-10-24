@@ -12,9 +12,9 @@ int	ft_putstr(char *str)
 
 	len = 0;
 	if (!str)
-		return (write(1, "(NULL)", 6));
+		return (write(1, "(null)", 6));
 	while (*str)
-		len += write (1, str++, 1);
+		len += write(1, str++, 1);
 	return (len);
 }
 
@@ -30,29 +30,43 @@ int	ft_strlen(char *str)
 	return (len);
 }
 
-int	ft_putnbr_base(int nbr, char *digits)
+int	ft_putnbr_base(unsigned long nbr, char *digits)
 {
 	int len;
 	int	base;
 
 	len = 0;
-	base = ft_strlen (digits);
-	if (nbr >= base)
-		len += ft_putnbr_base (nbr / base, digits);
-	len += ft_putchar (digits[nbr % base]);
+	base = ft_strlen(digits);
+	if (nbr >= (unsigned long)base)
+		len += ft_putnbr_base(nbr / base, digits);
+	len += ft_putchar(digits[nbr % base]);
+	return (len);
+}
+
+int ft_putnbr(long nbr, char *digits)
+{
+	int len;
+
+	len = 0;
+	if (nbr < 0)
+	{
+		len += ft_putchar('-');
+		nbr = -nbr;
+	}
+	len += ft_putnbr_base(nbr, digits);
 	return (len);
 }
 
 int	fs_handler(char fs, va_list va)
 {
-	int	len;
-	
+	int len;
+
 	if (fs == 's')
 		len = ft_putstr(va_arg(va, char*));
 	else if (fs == 'd')
-		len = ft_putnbr_base(va_arg(va, int), "0123456789");
+		len = ft_putnbr(va_arg(va, int), "0123456789");
 	else if (fs == 'x')
-		len = ft_putnbr_base(va_arg(va, int), "0123456789abcdef");
+		len = ft_putnbr_base(va_arg(va, unsigned int), "0123456789abcdef");
 	else
 		len = -1;
 	return (len);
