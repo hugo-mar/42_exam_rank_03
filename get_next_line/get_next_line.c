@@ -1,7 +1,5 @@
 #include "get_next_line.h"
 
-static int buffer_position = 0;
-
 static char *ft_strdup(char *str)
 {
 	char *dup;
@@ -27,7 +25,7 @@ static char *ft_strdup(char *str)
 
 char	*get_next_line(int fd)
 {
-	char line[70000];
+	char		line[70000];
 	static char buffer[BUFFER_SIZE];
 	static int	bytes_read;
 	static int	buffer_position;

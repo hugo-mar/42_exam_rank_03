@@ -58,8 +58,6 @@ int	fs_handler(char fs, va_list va)
 	return (len);
 }
 
-#include<stdio.h>
-
 int ft_printf(const char *format, ... )
 {
 	int		len;
