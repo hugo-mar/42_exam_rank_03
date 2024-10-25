@@ -80,6 +80,7 @@ int ft_printf(const char *format, ... )
 
 	if (!format)
 		return (-1);
+	len = 0;
 	va_start(va, format);
 	while (*format)
 	{
